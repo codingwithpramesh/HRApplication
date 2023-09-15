@@ -1,0 +1,38 @@
+﻿@model HRApplication.Models.Leave
+
+<table class="table table-striped">
+    <tr>
+        <Id>LeaveId</Id>
+        <td>Leave Type</td>
+        <td> No of Days</td>
+        <td>Status</td>
+    </tr>
+    <tr>
+        <td>@Model.LeaveId</td>
+        <td>@Model.LeaveType</td>
+        <td>@Model.NoOfDays</td>
+        <td> @Model.Status</td>
+    </tr>
+
+ 
+    
+</table>
+
+<div class="container">
+    <div class="post-body">
+    </div>
+    <div class="comment-section">
+        @{
+            await Html.RenderPartialAsync("_MainComment", new HRApplication.Models.ViewModel.CommentViewModel { Id = Model.LeaveId, MainCommentId =0 });
+        }
+       @*@if (User.IsInRole("Admin"))
+        {*@
+            @foreach (var c in Model.Comments)
+            {
+                <p> @c.Message  ----  @c.Created</p>
+
+            }
+
+        @*}*@
+    </div>
+</div>

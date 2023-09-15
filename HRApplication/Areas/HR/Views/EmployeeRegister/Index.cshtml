@@ -1,0 +1,45 @@
+﻿
+
+@model List<Employee>
+
+@{
+    ViewData["Title"] = "List Of Data";
+}
+
+
+<a asp-action="Create" class="btn btn-primary">Create</a>
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <tr>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Name) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Address)</td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().DOB)</td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Email)</td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Gender)</td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().CreatedDate)</td>
+                <td>Actions</td>
+            </tr>
+
+            @foreach (var abc in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(Model => abc.Name)</td>
+                    <td> @Html.DisplayFor(Model => abc.Address)</td>
+                    <td> @Html.DisplayFor(Model => abc.DOB)</td>
+                    <td> @Html.DisplayFor(Model => abc.Email)</td>
+                    <td> @Html.DisplayFor(Model => abc.Gender)</td>
+                    <td> @Html.DisplayFor(Model => abc.CreatedDate)</td>
+                    <td>
+                       @* <a  asp-action="Create"><i class="fa fa-plus" aria-hidden="true"></i></a>*@
+                        <a  asp-action="Edit" asp-route-id="@abc.Id">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        <a  asp-action="Delete" asp-route-id="@abc.Id"> <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                        <a  asp-action="Details" asp-route-id="@abc.Id"> <i class="fa fa-eye" aria-hidden="true"></i> </a>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    </div>
+</div>

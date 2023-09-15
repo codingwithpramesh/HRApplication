@@ -1,0 +1,39 @@
+﻿@model HRApplication.Models.Leave
+
+@{
+    ViewData["Title"] = "Create Laves";
+}
+<form asp-area="HR" asp-controller="Leave" asp-action="Create" method="post">
+    <div class="row">
+        <div class="col">
+
+            <div class="form-group" >
+                <label asp-for="LeaveType">Leave Type</label>
+                <input name="LeaveType" asp-for="LeaveType" class="form-control" />
+                <span asp-validation-for="LeaveType"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NoOfDays">No of Days</label>
+                <input name="NoOfDays" asp-for="NoOfDays" class="form-control" />
+                <span asp-validation-for="NoOfDays"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Status">Status</label>
+               <select ame asp-for="Status" class="form-control">
+                   <option >Select</option>
+                   <option value="1">Pending</option>
+                   <option value="2">Approved</option>
+                   <option value="3">Rejected</option>
+               </select>
+                <span asp-validation-for="Status"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit"  class="btn btn-primary">Create</button>
+            </div>
+        </div>
+    </div>
+
+</form>

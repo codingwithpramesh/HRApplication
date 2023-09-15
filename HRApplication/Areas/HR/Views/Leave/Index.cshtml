@@ -1,0 +1,39 @@
+﻿@model List<HRApplication.Models.Leave>
+
+
+
+@{
+    ViewData["Title"] = "List Of Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <tr>
+                <td>@Html.DisplayNameFor(Model =>Model.First().LeaveId) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().NoOfDays)</td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().LeaveType) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Status)</td>
+                <td>Actions</td>
+            </tr>
+
+            @foreach (var abc in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(Model => abc.LeaveId)</td>
+                    <td> @Html.DisplayFor(Model => abc.NoOfDays)</td>
+                    <td> @Html.DisplayFor(Model => abc.LeaveType)</td>
+                    <td> @Html.DisplayFor(Model => abc.Status)</td>
+                    <td> <a asp-action="Edit" asp-area="HR" asp-controller="Leave" asp-route-id="@abc.LeaveId">Edit</a></td>
+                    <td> <a asp-action="Delete" asp-area="HR" asp-controller="Leave" asp-route-id="@abc.LeaveId">Delete</a></td>
+                    <td><a asp-action="Details" asp-area="HR" asp-controller="Leave" asp-route-id="@abc.LeaveId">Details</a></td>
+                    <td><a asp-action="LeaveRequest" asp-area="HR" asp-controller="Leave" asp-route-id="@abc.LeaveId">LeaveRequest</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

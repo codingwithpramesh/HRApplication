@@ -1,0 +1,87 @@
+﻿@model HRApplication.Models.Registration
+
+@{
+    ViewData["Title"] = "Register";
+  
+}
+<form asp-action="Register" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 center-block">
+                <h3>Registration</h3>
+                <div class="form-group">
+                    <label asp-for="Name">Name</label>
+                    <input type="text" class="form-control" asp-for="Name" />
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email">Email</label>
+                    <input type="text" class="form-control" asp-for="Email" />
+                    <span class="text-danger" asp-validation-for="Email"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input type="text" class="form-control" asp-for="Username" />
+                    <span class="text-danger" asp-validation-for="Username"></span>
+
+                </div>
+                <label asp-for="Password">Password </label>
+                <div class="input-group">
+                   
+                    <input type="password" class="form-control" asp-for="Password" />
+                    <div class="input-group-append">
+                    <button> <span class="fa fa-eye-slash icon"></span></button>
+                    </div>
+                   
+                </div>
+                <span class="text-danger" asp-validation-for="Password"></span> <br />
+                <label asp-for="ConfirmPassword">Password confirm</label>
+                <div class="input-group">
+                   
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" />
+                    <div class="input-group-append">
+                        <button><span class="fa fa-eye-slash icon"></span></button>
+                    </div>
+                  
+                </div>
+                <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+
+                <div class="form-group">
+                    <input type="checkbox" id="ShowPassword" /> Show Password
+                </div>
+
+
+
+                <div class="form-group pt-3">
+                    <button type="submit" class="btn btn-info ">Register</button>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <p> If you have already Signup <a asp-action="Login" asp-asp-controller="Register">Click me</a></p>
+    </div>
+</form>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#show_password').hover(function show() {
+            
+            $('#txtPassword').attr('type', 'text');
+            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+        },
+            function () {
+               
+                $('#txtPassword').attr('type', 'password');
+                $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+            });
+        
+        $('#ShowPassword').click(function () {
+            $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+        });
+    });
+</script> 

@@ -1,0 +1,33 @@
+﻿@model HRApplication.Models.Leave
+
+@{
+    ViewData["Title"] = "Leave Request";
+}
+
+<div class ="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-striped">
+                <tr> 
+                    <td> Leave Type </td>
+                    <td> @Model.LeaveType </td>
+                </tr>
+
+                <tr>
+                    <td> Leave Type </td>
+                    <td> @Model.NoOfDays </td>
+                </tr>
+
+                <tr>
+                    <td> Leave Type </td>
+                    <td> @Model.Status </td>
+                </tr>
+
+                <tr>
+                    <td> <a class="btn btn-primary" asp-area="HR" asp-controller="Leave" asp-action="Accepted" asp-route-id="@Model.LeaveId" asp-route-status="Enum.approve">Approved</a></td>
+                    <td><a class="btn btn-primary" asp-area="HR" asp-controller="Leave" asp-action="Rejected" asp-route-id="@Model.LeaveId" asp-route-status="">Rejected</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

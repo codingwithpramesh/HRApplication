@@ -1,0 +1,24 @@
+﻿@model EmployeeAttendence
+    
+@*
+<form method="post"  asp-controller="checkinout">  *@
+@if (Model.Status == true)
+{
+    @*  <li class="ml-auto">
+    <a class=" btn btn-primary text-dark" onclick="change()"  id="btn" asp-area="">Checkin</a>
+    </li>*@
+
+    <li>
+        <a class=" btn btn-primary text-dark" onclick="change()" asp-area="" asp-controller="checkinout" asp-action="checkin">checkin</a>
+    </li>
+}
+else
+{
+    <li class="ml-auto">
+        <a class=" btn btn-primary text-dark" onclick="change()" asp-area="" asp-controller="checkinout" asp-action="checkout">checkout</a>
+    </li>
+}
+@*</form>*@
+
+@*
+<h1> @ViewBag.employee</h1>*@

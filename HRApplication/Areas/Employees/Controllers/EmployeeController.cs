@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace HRApplication.Controllers
+namespace HRApplication.Areas.Employees.Controllers
 {
-    public class AccountController : Controller
+    [Area("Employees")]
+    public class EmployeeController : Controller
     {
         public IActionResult Index()
         {

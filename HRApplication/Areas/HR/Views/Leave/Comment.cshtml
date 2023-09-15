@@ -1,0 +1,27 @@
+﻿@model HRApplication.Models.Leave
+
+@{
+
+    var base_path = Context.Request.PathBase;
+}
+
+<div class="container">
+    <div class="post-body">
+    </div>
+    <div class="comment-section">
+        <partial name="_MainComment"
+                 model='new HRApplication.Models.ViewModel.CommentViewModel { Id = Model.LeaveId , MainCommentId =0}'>
+       @* @{
+            await Html.RenderPartialAsync("_MainComment", new HRApplication.Models.ViewModel.CommentViewModel { Id = Model.LeaveId , MainCommentId =0});
+        }*@
+        @if (User.IsInRole("Admin"))
+        {
+            @foreach (var c in Model.Comments)
+            {
+                <p> @c.Message  ----  @c.Created</p>
+
+            }
+            
+        }
+    </div>
+</div>

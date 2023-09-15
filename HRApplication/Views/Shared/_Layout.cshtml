@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿
+@inject IHttpContextAccessor Accessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,6 +10,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HRApplication.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    
 </head>
 <body>
     <header>
@@ -17,7 +27,7 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex ">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -25,6 +35,73 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                          
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary" asp-area="HR" asp-controller="EmployeeRegister" asp-action="Index">Employees</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn btn-primary" asp-area="HR" asp-controller="EmployeeAttendence" asp-action="Index">Attendence</a>
+                            </li>
+
+                            @*  <li class="ml-auto" style="padding-left : 700px">
+                                <a class=" btn btn-primary text-dark" asp-area="" asp-controller="checkinout" asp-action="checkin">Checkin</a>
+                            </li>*@
+
+                            @*    <partial name="_NavbarItems"  />*@
+
+                            @*<li>
+                                <input type="button" value="Checkin" onclick="change()" id="MyButton1" />
+                            </li>*@
+@*
+                            <li>@Html("_CheckInButtonHander", "CheckInOutController")</li>*@
+
+                        @*    @if(ViewBag.status == false)
+                            {
+                                <li class="ml-auto">
+                                    <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="Checkinout" asp-action="checkin">checkin</a>
+                                </li>
+                            }else {
+                                <li class="ml-auto">
+                                    <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="checkinout" asp-action="checkout">checkout</a>
+                                </li>
+                            }*@
+
+                            @* var d= @Accessor.HttpContext.Session.GetString("UserStatus")
+                       @* @await Html.PartialAsync("_ProductPartial"*@
+
+                            @* @await Html.PartialAsync("_NavbarItems")*@
+
+                            @*<li>Html.Action("_NavbarItems", "CheckInOut")</li> *@
+                            @*   <li class="ml-auto" style="padding-left : 850px">
+                                <a class=" btn btn-primary text-dark" asp-area="" asp-controller="checkinout" asp-action="checkin">Checkin</a>
+                            </li>*@
+                            <div id="checkInButtons">
+
+                            </div>
+                            <li class="ml-auto">
+                                <a class="nav-link text-dark btn btn-danger" asp-area="" asp-controller="Register" asp-action="Logout">Logout</a>
+                            </li>
+
+
+
+                        }
+                        else
+                        {
+
+                          
+
+                            <li class="ml-auto">
+                                <a class=" btn btn-primary text-dark" asp-area="" asp-controller="Register" asp-action="Login">Login</a>
+                            </li>
+
+                        }
+
+
                     </ul>
                 </div>
             </div>
@@ -37,13 +114,22 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - HRApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center">
+            &copy; 2023 - Microcode Technologies
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+        
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    $.get("/home/hi").done((response)=>{
+        $("#checkInButtons").html(response);
+    })
+
+   
+</script>
